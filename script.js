@@ -1,8 +1,3 @@
-// Book constructor
-    // all books should have a unique id generated using cryptio.randomUUID
-
-// Function that create's books and put's into an array
-
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -10,36 +5,54 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.uuid = self.crypto.randomUUID();
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    if(Number.isInteger(pages) &&
-        typeof title === 'string' &&
-        typeof author === 'string' &&
-        typeof read === 'boolean') {
-        const book = new Book(title, author, pages, read)
-        myLibrary.push(book);
+function addBookToLibrary() {
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').value;
+
+    const book = new Book(title, author, pages, read)
+    myLibrary.push(book);
+
+    displayLibrary(myLibrary);
+    console.log(myLibrary)
+}
+
+function displayLibrary(myLibrary) {
+    const library = document.getElementById('library');
+    library.innerHTML = '';
+
+    for(let i = 0; i < myLibrary.length; i++) {
+        const book = myLibrary[i];
+        displayBook(book);
     }
 
+}
+
+function displayBook(book) {
     const library = document.getElementById('library');
     const bookCard = document.createElement('div');
 
     bookCard.innerHTML = `
-        <h3>${title}</h3>
-        <p class="author"><strong>Author:</strong> ${author}</p>
-        <p class="pages><strong>Pages:</strong> ${pages}</p>
-        <p class="read><strong>Read:</strong> ${read ? 'Yes' : 'No'}</p>
+        <h3>${book.title}</h3>
+        <p class="author"><strong>Author:</strong> ${book.author}</p>
+        <p class="pages"><strong>Pages:</strong> ${book.pages}</p>
+        <p class="read"><strong>Read:</strong> ${book.read ? 'Yes' : 'No'}</p>
+        <p class="uuid"><strong>UUID:</strong> ${book.uuid}</p>
     `;
 
     library.appendChild(bookCard);
-
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 288, true);
-addBookToLibrary('1984', 'George Orwell', 328, false);
-addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, true);
-addBookToLibrary('The Catcher in the Rye', 'J.D. Salinger', 277, false);
-addBookToLibrary('Brave New World', 'Aldous Huxley', 311, true);
-console.log(myLibrary)
+// addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 288, true);
+// addBookToLibrary('1984', 'George Orwell', 328, false);
+// addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, true);
+// addBookToLibrary('The Catcher in the Rye', 'J.D. Salinger', 277, false);
+// addBookToLibrary('Brave New World', 'Aldous Huxley', 311, true);
+// console.log(myLibrary)
 
-
+displayLibrary(myLibrary);
