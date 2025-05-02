@@ -8,12 +8,22 @@ function Book(title, author, pages, read) {
     this.uuid = self.crypto.randomUUID();
 }
 
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+    displayLibrary(myLibrary);
+}
+
 function addBookToLibrary() {
 
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+    let read = document.getElementById('read').value;
+    if(read === 'on') {
+        read = true;
+    } else {
+        read = false;
+    }
 
     const book = new Book(title, author, pages, read)
     myLibrary.push(book);
@@ -45,7 +55,33 @@ function displayBook(book) {
         <p class="uuid"><strong>UUID:</strong> ${book.uuid}</p>
     `;
 
+    const toggleBtn = document.createElement('button');
+    toggleBtn.innerHTML = 'Toggle Read';
+    toggleBtn.addEventListener('click', () => {
+        book.toggleRead();
+    })
+    bookCard.appendChild(toggleBtn);
+
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = 'Remove Book';
+    deleteBtn.addEventListener('click', () => {
+        deleteBook(book.uuid);
+    })
+    bookCard.appendChild(deleteBtn);
+
     library.appendChild(bookCard);
+}
+
+function deleteBook(id) {
+    const index = myLibrary.findIndex(book => book.uuid === id);
+    console.log(id);
+    console.log(index);
+    if(index !== -1) {
+        myLibrary.splice(index, 1);
+    }
+
+    displayLibrary(myLibrary)
 }
 
 // addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 288, true);
