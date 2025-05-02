@@ -32,6 +32,15 @@ function addBookToLibrary() {
     console.log(myLibrary)
 }
 
+function addBookToLibrary(title, author, pages, read) {
+
+    const book = new Book(title, author, pages, read)
+    myLibrary.push(book);
+
+    displayLibrary(myLibrary);
+    console.log(myLibrary)
+}
+
 function displayLibrary(myLibrary) {
     const library = document.getElementById('library');
     library.innerHTML = '';
@@ -70,7 +79,10 @@ function displayBook(book) {
     })
     bookCard.appendChild(deleteBtn);
 
+    bookCard.classList.add('bookCard');
     library.appendChild(bookCard);
+
+
 }
 
 function deleteBook(id) {
@@ -84,11 +96,11 @@ function deleteBook(id) {
     displayLibrary(myLibrary)
 }
 
-// addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 288, true);
-// addBookToLibrary('1984', 'George Orwell', 328, false);
-// addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, true);
-// addBookToLibrary('The Catcher in the Rye', 'J.D. Salinger', 277, false);
-// addBookToLibrary('Brave New World', 'Aldous Huxley', 311, true);
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 288, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 281, true);
+addBookToLibrary('The Catcher in the Rye', 'J.D. Salinger', 277, false);
+addBookToLibrary('Brave New World', 'Aldous Huxley', 311, true);
 // console.log(myLibrary)
 
 displayLibrary(myLibrary);

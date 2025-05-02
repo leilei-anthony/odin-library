@@ -1,0 +1,154 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  /* 3. Enable keyword animations */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+  
+  body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* 6. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 7. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 8. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 9. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    10. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  /* ------------------- */
+
+:root {
+    --primary: #1DB954;
+    --secondary: #212121;
+    --dark: #121212;
+    --grey: #535353;
+    --light: #b3b3b3;
+
+    background-color: black;
+}
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--light);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+}
+
+label, legend {
+    background-color: transparent;
+    color: white;
+}
+
+input {
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    background-color: var(--dark);
+    padding-left: 5px;
+}
+
+/* removes arrows from number inputs */
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:hover {
+    border: 1px solid var(--primary)
+}
+
+button {
+    background-color: var(--grey);
+    border-radius: 5px;
+    border: 0px;
+    color: var(--dark);
+}
+
+button:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+h1 {
+    padding-top: 15px;
+    color: white;
+}
+
+form {
+    display: flex;
+}
+
+fieldset {
+    border: 0px solid white;
+    background-color: var(--dark);
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark);
+    padding: 15px;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+h3 {
+    font-size: 1.7rem;
+    color: white;
+}
+
+#library {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
